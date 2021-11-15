@@ -1,0 +1,31 @@
+Steps to complete the task
+
+1- Sign Up AWS account
+2- Create New User (Administrator)
+3- Create Access Key ID and Secret
+4- Install AWS CLI (curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" unzip awscliv2.zip sudo ./aws/install)
+5- configure aws cli (aws configure)
+6- run the bash script (./script.sh) to create bucket and copy raw file into bucket
+7- give public read access permission to data-raw-input bucket
+8- create a lambda function (first_handler.py)
+9- Create a virtualenv, install pandas and psycopg2
+10- zip pacakges into folder and upload in lambda layer
+11- Create a postgres RDS and a table to store clean data
+12- create a lambda function (second_handler.py)
+13- Create inbound rule for 5432 to connect is from pgadmin client
+
+I have create only create those fields which required manipulation
+CREATE TABLE public.tmc_data
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    CONSTRAINT tmc_data_pkey PRIMARY KEY (id)
+    "MovementDateTime" timestamp NOT NULL,
+    "Speed" double precision,
+    "CallSign" text,
+    "ShipName" text,
+    "Beam" integer,
+    "Length" integer,
+    "MoveStatus" text,
+    "BeamRatio" double precision
+);
+

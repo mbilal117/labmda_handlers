@@ -40,7 +40,7 @@ def lambda_handler(event, context):
 
 def excecute_query(data):
     try:
-        con = psycopg2.connect(host='testinstance.cjwq2jodbhft.us-east-1.rds.amazonaws.com', user='postgres', password='testing123', dbname='test', port=5432, connect_timeout=5)
+        con = psycopg2.connect(host=host, user=user, password=password, dbname='test', port=5432, connect_timeout=5)
         con.autocommit = True
         cur = con.cursor()
         query = """ INSERT INTO tmc_data(
